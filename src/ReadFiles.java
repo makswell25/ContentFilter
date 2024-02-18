@@ -1,9 +1,12 @@
 import java.io.*;
-import java.nio.file.Path;
 
 public class ReadFiles {
-    StringBuilder builder = new StringBuilder();
-    public void readFile() {
+    public StringBuilder builder;
+    public ReadFiles(StringBuilder builder) {
+        this.builder = builder;
+    }
+
+    public StringBuilder readFile() {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader("/home/maks/file.txt"));
@@ -14,15 +17,11 @@ public class ReadFiles {
                 }
                 builder.append(line + " \n");
             }
-        } catch (
-                FileNotFoundException ex) {
+        } catch (FileNotFoundException e) {
             System.err.println("Файл не найден");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public String toString() {
-        return builder.toString();
+        return builder;
     }
 }
